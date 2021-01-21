@@ -25,12 +25,54 @@ namespace Phils_Lending_Library.Classes
             library[count++] = book;
             
         }
-
-        public void Remove(Book book)
+        /// <summary>
+        /// The below method removes a book from the library, and returns the removed book
+        /// </summary>
+        /// <param name="book">book to be removed</param>
+        public Book Remove(Book book)
         {
-
+            int temporaryCounter = 0;
+            //Here we are going to make a temporary book array in order to be able to index it
+            Book[] temp;
+            //learned that we cant set removed variable without a default
+            Book removed = default(Book);
+            //if the count has not reached and is not near the end of the array "library", since we've doubled it
+            //we set temp equal to an array with a length that is one less, respresenting the removed book.
+            if(count < library.Length / 2)
+            {
+                temp = new Book[count - 1];
+            }
+            else
+            {
+                temp = new Book[library.Length];
+            }
+            for (int i = 0; i < count; i++)
+            {
+                //this if checks if the book is in the library
+                if (library[i] != null)
+                {
+                    //if the element of library at i equals the input book, set removed equal to it for return.
+                    if(library[i].Equals(book))
+                    {
+                        removed = library[i];
+                    }
+                    else
+                    {
+                        temp[temporaryCounter] = library[i];
+                        temporaryCounter++;
+                    }
+                }
+                //set the library equal to our new temp array with the removed book
+            library = temp;
+                //decriment the counter to represent one less book
+            count--;
+            }
+            return removed;
         }
-
+        /// <summary>
+        /// The below method returns the current count of books in the library.
+        /// </summary>
+        /// <returns>an integer that represents how many books there are in the library</returns>
         public int Count()
         {
             return count;
