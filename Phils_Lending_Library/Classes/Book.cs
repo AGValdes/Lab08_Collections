@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClassesPhils_Lending_Library.Classes;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -42,6 +43,6 @@ namespace Phils_Lending_Library.Classes
         Mystery,
         Fantasy,
         Romance,
-        Biography
+        NonFiction
     }
 }
