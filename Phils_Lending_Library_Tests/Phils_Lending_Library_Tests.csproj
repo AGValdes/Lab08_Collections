@@ -19,4 +19,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Phils_Lending_Library\Phils_Lending_Library.csproj" />
+  </ItemGroup>
+
 </Project>
