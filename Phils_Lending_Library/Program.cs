@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ClassesPhils_Lending_Library.Classes;
 using Phils_Lending_Library.Classes;
 
 
@@ -36,28 +37,28 @@ namespace Phils_Lending_Library
                 Console.WriteLine("6. Exit");
 
                 userChoice = Convert.ToInt32(Console.ReadLine());
-                if (userChoice == 1)
+                switch (userChoice)
                 {
-                    ViewLibrary();                   
+                    case 1:
+                        ViewLibrary();
+                        break;
+                    case 2:
+                        AddABookToLibrary();
+                        break;
+                    case 3:
+                        BorrowABook();
+                        break;
+                    case 4:
+                        ReturnBook();
+                        break;
+                    case 5:
+                        ViewBookBag();
+                        break;
+                    default:
+                        break;
                 }
-                if (userChoice == 2)
-                {
-                    AddABookToLibrary();
-                }
-                if (userChoice == 3)
-                {
-                    BorrowABook();
-                }
-                if (userChoice == 4)
-                {
-                    ReturnBook();
-                   
-                }
-                if (userChoice == 5)
-                {
-                    ViewBookBag();
-
-                }
+       
+                
             }
         }
         /// <summary>
@@ -65,8 +66,8 @@ namespace Phils_Lending_Library
         /// </summary>
         public static void ViewLibrary()
         {
-            Console.WriteLine("Here are the books in the library:");
-            Console.WriteLine();
+            Console.WriteLine("Here are the books in the library: \n");
+  
             foreach (Book book in Library)
             {
                 if( book != null)
@@ -99,16 +100,15 @@ namespace Phils_Lending_Library
             Console.WriteLine("Please enter the number of pages in the book");
             int thisPageNumber = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Please choose a number corresponding to a genre out of this list:");
-            int indexForNumberedList = 1;
+        
             foreach ( string genre in Enum.GetNames(typeof(Genre)))
             {
-                Console.WriteLine($"{indexForNumberedList}. {genre}");
-                indexForNumberedList++;
+                Console.WriteLine($"{genre.GetHashCode()}. {genre}");
             }
+
             string genreString = Console.ReadLine();
             int genreInt = Convert.ToInt32(genreString);
-            //We subtract the one, because our printed list starts at 1, whereas our enumerated list of genres starts at 0.
-            Genre genreChoice = (Genre)genreInt - 1;
+            Genre genreChoice = (Genre)genreInt;
 
             Book thisBook = new Book(thisTitle, thisFirstName, thisLastName, thisPageNumber, genreChoice);
             Library.Add(thisBook);
@@ -120,12 +120,16 @@ namespace Phils_Lending_Library
             Book borrowedBook = default(Book);
             int indexForNumberedList = 1;
             Console.WriteLine("Which book would you like to borrow?");
+
             foreach (Book book in Library)
             {
                 Console.WriteLine($"{indexForNumberedList}. {book.Title}");
                 indexForNumberedList++;
             }
+
             string userChoice = Console.ReadLine();
+           
+           
             foreach (Book book in Library)
             {
               if (userChoice == null)
@@ -175,6 +179,19 @@ namespace Phils_Lending_Library
             Library.Add(new Book("The Left Hand Of Darkness", "Ursula K.", "LeGuin", 286, Genre.SciFi));
             Library.Add(new Book("Fifty Shades of Grey", "E.L.", "James", 514, Genre.Romance));
             Library.Add(new Book("Experience the Joy of Painting", "Bob", "Ross", 68, Genre.NonFiction));
+            Book johnsBook = new Book()
+            {
+                Title = "john is bald",
+                Author = new Author()
+                {
+                    FirstName = "John",
+                    LastName = "Cokos",
+
+                },
+                NumberOfPages = 200,
+                Genre = Genre.Mystery
+            };
+            Library.Add(johnsBook);
         }
 
         
