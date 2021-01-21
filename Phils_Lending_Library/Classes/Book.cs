@@ -14,14 +14,19 @@ namespace Phils_Lending_Library.Classes
 
         public Genre Genre { get; set; }
 
-  /// <summary>
-  /// The below is a constructor functon to make new Book instances.
-  /// </summary>
-  /// <param name="title"></param>
-  /// <param name="firstName"></param>
-  /// <param name="lastName"></param>
-  /// <param name="numberOfPages"></param>
-  /// <param name="genre"></param>
+        /// <summary>
+        /// The below is a constructor functon to make new Book instances.
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="firstName"></param>
+        /// <param name="lastName"></param>
+        /// <param name="numberOfPages"></param>
+        /// <param name="genre"></param>
+        /// 
+        public Book()
+        {
+
+        }
         public Book(string title, string firstName, string lastName, int numberOfPages, Genre genre)
         {
             {
@@ -39,7 +44,7 @@ namespace Phils_Lending_Library.Classes
     }
     public enum Genre
     {
-        SciFi,
+        SciFi = 1,
         Mystery,
         Fantasy,
         Romance,
